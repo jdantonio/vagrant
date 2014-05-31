@@ -1,0 +1,76 @@
+---
+- name: Upgrade apt packages
+  apt: upgrade=dist update_cache=yes
+
+- name: Install python-software-properties so the apt_repository module will work properly
+  apt: pkg=python-software-properties
+
+- name: Remove the unwanted Ack package if it exists
+  apt: name=ack state=absent
+
+- name: Install Development Packages
+  apt: pkg={{ item }} state=installed update-cache=yes
+  with_items:
+    - autoconf
+    - build-essential
+    - git-core
+    - git
+    - libreadline6-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    - libgdbm-dev
+    - libncurses5-dev
+    - libtool
+    - bison
+    - libffi-dev
+    - libdigest-hmac-perl
+    - unzip
+    - zlib1g
+    - zlib1g-dev
+    - libcurl4-openssl-dev
+    - curl
+    - htop
+    - ntp
+    - vim
+    - ack-grep
+    - bash-completion
+
+- name: Install Desktop Packages
+  apt: pkg={{ item }} state=installed update-cache=yes
+  with_items:
+    - ubuntu-desktop
+
+- name: Install RVM
+  shell: \curl -sSL https://get.rvm.io | bash -s stable
+  sudo: false
+
+- name: Add Oracle Java 8 PPA
+  tags: java
+  apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+  sudo: true
+
+- name: Automatically select the Oracle License
+  tags: java
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  sudo: true
+
+- name: Install Java Packages
+  tags: java
+  apt: pkg={{ item }} state=installed update-cache=yes
+  with_items:
+    - oracle-java8-installer
+
+- name: setup dotfiles
+  # vim assumes that Vagrant has mapped the ~/.vim directory
+  file: src=~/{{ item.name }} dest=/home/vagrant/{{ item.name }} owner=vagrant group=vagrant mode=0644
+  with_items:
+    - { name: '.gemrc' }
+    - { name: '.gitconfig' }
+    - { name: '.gitignore' }
+    - { name: '.gvimrc' }
+    - { name: '.irbrc' }
+    - { name: '.vimrc' }
+
+- file: dest=/home/vagrant/.bash_profile state=absent
+- copy: src=~/.profile dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0644
