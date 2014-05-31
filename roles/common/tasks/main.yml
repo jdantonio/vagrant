@@ -77,8 +77,8 @@
 
 - name: Setup SSH keys
   #copy: src={{ ansible_env.HOME }}/.ssh/{{ item.name }} dest=/home/vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
-  copy: src=/Users/Jerry/.ssh/{{ item.name }} dest=/home/vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
+  copy: src={{ lookup('env','HOME') }}/.ssh/{{ item.name }} dest=/home/vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
   sudo: false
   with_items:
     - { name: 'id_rsa', mode: '600' }
-    - { name: 'id_ras.pub', mode: '644' }
+    - { name: 'id_rsa.pub', mode: '644' }
