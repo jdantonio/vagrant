@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/Jerry/Projects/FOSS/concurrent-ruby/spec'
+let g:netrw_dirhist_2='/Users/Jerry/Projects/FOSS/concurrent-ruby/lib/concurrent'
+let g:netrw_dirhist_3='/Users/Jerry/Projects'
+let g:netrw_dirhist_4='/Users/Jerry/Projects/FOSS/concurrent-ruby/lib/concurrent/executor'
+let g:netrw_dirhist_5='/Users/Jerry/Projects/FOSS/concurrent-ruby/ext/concurrent_ruby_ext'
+let g:netrw_dirhist_6='/Users/Jerry/Projects/VirtualHold/navigator_installer/deployment'
+let g:netrw_dirhist_7='/Users/Jerry/Projects/FOSS/concurrent-ruby/ext'
+let g:netrw_dirhist_8='/Users/Jerry/Projects/VirtualHold/navigator_http_workers/lib/vht/navigator'
+let g:netrw_dirhist_9='/Users/Jerry/Projects/vagrant'

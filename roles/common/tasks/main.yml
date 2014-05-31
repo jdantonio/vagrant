@@ -62,8 +62,8 @@
     - oracle-java8-installer
 
 - name: setup dotfiles
-  # vim assumes that Vagrant has mapped the ~/.vim directory
-  file: src=~/{{ item.name }} dest=/home/vagrant/{{ item.name }} owner=vagrant group=vagrant mode=0644
+  # assumes that Vagrant has mapped the ~/.vim directory
+  file: src=./shared/dotfiles/{{ item.name }} dest=/home/vagrant/{{ item.name }} owner=vagrant group=vagrant mode=0644
   with_items:
     - { name: '.gemrc' }
     - { name: '.gitconfig' }
@@ -73,4 +73,4 @@
     - { name: '.vimrc' }
 
 - file: dest=/home/vagrant/.bash_profile state=absent
-- copy: src=~/.profile dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0644
+- copy: src=./shared/dotfiles/.profile dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0644

@@ -1,0 +1,156 @@
+#===============================================================
+#
+# .bashrc
+#
+# ALIASES AND FUNCTIONS
+#
+#===============================================================
+
+#-------------------
+# Detect OS
+#-------------------
+
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='mac'
+elif [[ "$unamestr" == 'MINGW32_NT_6.1' ]]; then
+   platform='windows'
+fi
+
+#-------------------
+# Git Completion
+#-------------------
+
+export PS1='\[\e]0;\w\a\]\n\[\e[0m\][\[\e[36m\]\t \[\e[32m\]\u \[\e[33m\]\w\[\e[0m\]]$ '
+if [[ $platform == 'linux' ]]; then
+  #source /etc/bash_completion.d/git
+  export PS1='\[\e]0;\w\a\]\n\[\e[0m\][\[\e[36m\]\t \[\e[32m\]\u \[\e[33m\]\w\[\e[32m\]$(__git_ps1 " (%s)")\[\e[0m\]]$ '
+elif [[ $platform == 'mac' ]]; then
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+    export PS1='\[\e]0;\w\a\]\n\[\e[0m\][\[\e[36m\]\t \[\e[32m\]\u \[\e[33m\]\w\[\e[32m\]$(__git_ps1 " (%s)")\[\e[0m\]]\n$ '
+  fi
+fi
+
+if [[ $platform == 'mac' ]]; then
+  export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+  export PATH=/usr/local/sbin:/usr/local/bin:$PATH:~/bin
+  export COMMAND_MODE=unix2003
+elif [[ $platform == 'linux' ]]; then
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+  export PATH=$PATH:~/bin:~/Dropbox/VHT/Git
+fi
+
+#-------------------
+# Enviro Vars
+#-------------------
+
+export EDITOR=vim
+
+#-------------------
+# Personnal Aliases
+#-------------------
+
+alias h='history'
+alias which='type -a'
+alias ..='cd ..'
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+alias du='du -kh'       # Makes a more readable output.
+alias df='df -kTh'
+alias ff='find . -name'
+alias psx='ps aux | grep'
+alias stop="kill -9"
+alias me="curl remoteip.me"
+
+if [[ $platform == 'mac' ]]; then
+  alias ls='ls -G'
+  alias ll='ls -l'
+  alias la='ls -a'
+  alias lla='ls -l -a'
+elif [[ $platform == 'linux' ]]; then
+  alias ls='ls --color=auto'
+  alias ll='ls -alF'
+  alias la='ls -A'
+  alias lla='ls -A -alF'
+else
+  alias ll='ls -l'
+  alias la='ls -a'
+  alias lla='ls -l -a'
+fi
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+#alias clean='find . -name *.*~ -print0 | xargs -0 rm'
+alias clean='find . -name *.swp -print0 | xargs -0 rm'
+
+alias got='git' # because I keep mistyping this
+
+alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
+
+alias be='bundle exec'
+alias bake='bundle exec rake'
+alias baked='bundle exec rdebug rake'
+alias bc='bundle console'
+
+alias cuke='bundle exec cucumber'
+alias spec='bundle exec rspec -fd --color'
+
+alias jr='jruby --1.9 -S'
+export JRUBY_OPTS="-J-Xms2g -J-Xmx4g -Xcext.enabled=true"
+
+if [[ $platform == 'linux' ]]; then
+  alias gitg='git g'
+  alias gitx='git g'
+  alias open='nautilus'
+  alias ack='ack-grep'
+fi
+
+if [[ $platform == 'mac' ]]; then
+
+  alias mate='open -a /Applications/TextMate.app'
+  alias tower='open -a /Applications/Tower.app'
+  alias gitx="open -a /Applications/GitX.app"
+
+  alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
+  alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
+
+  # brew install apple-gcc42
+  update.stuff() {
+    brew update
+    brew tap homebrew/versions
+    brew tap homebrew/dupes
+    brew upgrade
+    brew prune
+    rvm get stable
+    gem update --system
+  }
+
+  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+elif [[ $platform == 'linux' ]]; then
+
+  update.stuff() {
+    sudo apt-get update
+    sudo apt-get upgrade
+    rvm get stable
+    gem update --system
+  }
+
+  alias apt="sudo apt-get"
+
+  export PATH=$PATH:$JAVA_HOME/bin
+fi
+
+# RVM
+# http://rvm.beginrescueend.com/
+# http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
