@@ -61,9 +61,9 @@
   with_items:
     - oracle-java8-installer
 
-- name: setup dotfiles
-  # assumes that Vagrant has mapped the ~/.vim directory
-  file: src=./shared/dotfiles/{{ item.name }} dest=/home/vagrant/{{ item.name }} owner=vagrant group=vagrant mode=0644
+- name: Setup dotfiles
+  # assumes that Vagrant has mapped the vim directory
+  copy: src=./shared/dotfiles/{{ item.name }} dest=/home/vagrant/{{ item.name }} owner=vagrant group=vagrant mode=0644
   with_items:
     - { name: '.gemrc' }
     - { name: '.gitconfig' }
@@ -74,3 +74,11 @@
 
 - file: dest=/home/vagrant/.bash_profile state=absent
 - copy: src=./shared/dotfiles/.profile dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0644
+
+- name: Setup SSH keys
+  #copy: src={{ ansible_env.HOME }}/.ssh/{{ item.name }} dest=/home/vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
+  copy: src=/Users/Jerry/.ssh/{{ item.name }} dest=/home/vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
+  sudo: false
+  with_items:
+    - { name: 'id_rsa', mode: '600' }
+    - { name: 'id_ras.pub', mode: '644' }
