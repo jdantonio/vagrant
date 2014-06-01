@@ -25,7 +25,6 @@
 	interactive = auto
 	status = auto
 [core]
-	;editor = mate -w
 	editor = vim
 	excludesfile = ~/.gitignore
 [giggle]

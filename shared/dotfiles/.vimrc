@@ -155,25 +155,3 @@ if has('gui_running')
   " Use CTRL-Q to do what CTRL-V used to do
   noremap <C-Q>		<C-V>
 endif
-
-" Gist.vim
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-let g:github_user = 'jdantonio'
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
-end
-
-" Ruby omnicomplete
-" http://stackoverflow.com/questions/4415516/vim-ruby-html-omnicomplete-not-showing-local-methods-variables"
-" see :help ft-ruby-omni
-"set omnifunc=rubycomplete#Complete 
-"let g:rubycomplete_buffer_loading = 1 
-"let g:rubycomplete_classes_in_global = 1 
-"let g:rubycomplete_rails = 1
-
-" some Esc aliases
-" http://vim.wikia.com/wiki/Avoid_the_escape_key
-":imap ` <Esc>
