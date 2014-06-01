@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   {'~/.ssh/id_rsa' => '600', '~/.ssh/id_rsa.pub' => '644'}.each do |file, mode|
-    dest = File.join(DEST, File.basename(file))
+    dest = File.join(DEST, '.ssh', File.basename(file))
     config.vm.provision :file, source: file, destination: dest
     config.vm.provision :shell, inline: "chmod #{mode} #{dest}"
   end
