@@ -1,6 +1,6 @@
 #===============================================================
 #
-# .bashrc
+# .profile || .bash_profile
 #
 # ALIASES AND FUNCTIONS
 #
@@ -75,11 +75,7 @@ elif [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
   alias ll='ls -alF'
   alias la='ls -A'
-  alias lla='ls -A -alF'
-else
-  alias ll='ls -l'
-  alias la='ls -a'
-  alias lla='ls -l -a'
+  alias l='ls -CF'
 fi
 
 alias dir='dir --color=auto'
@@ -89,12 +85,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-#alias clean='find . -name *.*~ -print0 | xargs -0 rm'
 alias clean='find . -name *.swp -print0 | xargs -0 rm'
 
 alias got='git' # because I keep mistyping this
 
-alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
+# Ruby development
 
 alias be='bundle exec'
 alias bake='bundle exec rake'
@@ -105,7 +100,8 @@ alias cuke='bundle exec cucumber'
 alias spec='bundle exec rspec -fd --color'
 
 alias jr='jruby --1.9 -S'
-export JRUBY_OPTS="-J-Xms2g -J-Xmx4g -Xcext.enabled=true"
+
+alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
 
 if [[ $platform == 'linux' ]]; then
   alias gitg='git g'
@@ -114,7 +110,17 @@ if [[ $platform == 'linux' ]]; then
   alias ack='ack-grep'
 fi
 
+alias ackr='ack --type=ruby'
+alias acke='ack --type=erlang'
+
 if [[ $platform == 'mac' ]]; then
+
+  alias decks='cd ~/Dropbox/MTGO/Decks'
+
+  dotfiles() {
+    ruby ~/bin/dotfiles.rb
+    source ~/.profile
+  }
 
   alias mate='open -a /Applications/TextMate.app'
   alias tower='open -a /Applications/Tower.app'
@@ -122,6 +128,18 @@ if [[ $platform == 'mac' ]]; then
 
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
+
+  es.start() {
+    elasticsearch -d
+  }
+
+  es.stop() {
+    curl -XPOST 'http://localhost:9200/_cluster/nodes/_local/_shutdown'
+  }
+
+  es.stop.all() {
+    curl -XPOST 'http://localhost:9200/_shutdown'
+  }
 
   # brew install apple-gcc42
   update.stuff() {
@@ -147,7 +165,15 @@ elif [[ $platform == 'linux' ]]; then
 
   alias apt="sudo apt-get"
 
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
   export PATH=$PATH:$JAVA_HOME/bin
+fi
+
+export JRUBY_OPTS="-J-Xms2g -J-Xmx4g -Xcext.enabled=true"
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
 fi
 
 # RVM

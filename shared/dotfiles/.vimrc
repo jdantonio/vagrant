@@ -165,3 +165,15 @@ if has("mac")
 elseif has("unix")
   let g:gist_clip_command = 'xclip -selection clipboard'
 end
+
+" Ruby omnicomplete
+" http://stackoverflow.com/questions/4415516/vim-ruby-html-omnicomplete-not-showing-local-methods-variables"
+" see :help ft-ruby-omni
+"set omnifunc=rubycomplete#Complete 
+"let g:rubycomplete_buffer_loading = 1 
+"let g:rubycomplete_classes_in_global = 1 
+"let g:rubycomplete_rails = 1
+
+" some Esc aliases
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
+":imap ` <Esc>

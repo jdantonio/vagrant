@@ -13,7 +13,7 @@ map <C-right> :tabn<CR>
 if has("mac")
 	:silent cd $HOME/Projects
 elseif has("unix")
-	:silent cd $HOME/projects
+	:silent cd $HOME/Projects
 elseif has("win32")
 	:silent cd C:/Projects
 endif

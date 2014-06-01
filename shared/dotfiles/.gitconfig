@@ -1,6 +1,6 @@
 [user]
 	name = Jerry D'Antonio
-  email = stumpjumper@gmail.com
+	email = stumpjumper@gmail.com
 [alias]
 	st = status
 	cm = commit -m
@@ -25,5 +25,12 @@
 	interactive = auto
 	status = auto
 [core]
+	;editor = mate -w
 	editor = vim
 	excludesfile = ~/.gitignore
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1181x830+1813+103
+	main-window-view = FileView
+	file-view-vpane-position = 493
+	history-view-vpane-position = 707
