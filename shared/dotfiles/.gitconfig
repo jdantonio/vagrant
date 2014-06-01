@@ -1,5 +1,6 @@
 [user]
 	name = Jerry D'Antonio
+  email = stumpjumper@gmail.com
 [alias]
 	st = status
 	cm = commit -m
