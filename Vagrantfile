@@ -6,7 +6,7 @@ require 'rbconfig'
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = '2'
 
-UNIX_HOME = '~vagrant'
+UNIX_HOME = '/home/vagrant'
 WIN7_HOME = 'C:/Users/vagrant'
 
 SRC = File.expand_path(File.join(File.dirname(__FILE__), 'shared/dotfiles'))
@@ -49,23 +49,51 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ### https://docs.vagrantup.com/v2/virtualbox/boxes.html
   ### `vagrant package --base "Windows 7" --output ~/Desktop/windows-7-ultimate-32-jdantonio.box`
   ### `Winrm quickconfig`
+  #
+  ### http://www.vagrantup.com/blog/feature-preview-vagrant-1-6-windows.html
+  ### http://stackoverflow.com/questions/21822768/issue-with-hanging-vagrant-up-on-win7-while-configuring-network-adapter
+  ### http://kamalim.github.io/blogs/how-to-create-you-own-vagrant-base-boxes/
+  ### http://blog.csanchez.org/2011/10/31/headless-virtualbox-with-windows-7-guest/
   config.vm.define 'win7' do |cfg|
 
     cfg.vm.box = 'windows-7-ultimate-32-jdantonio'
     cfg.vm.box_url = 'file://~/Desktop/windows-7-ultimate-32-jdantonio.box'
 
     cfg.vm.communicator = 'winrm'
-    cfg.vm.network :forwarded_port, host: 3389, guest: 3389
+    cfg.windows.set_work_network = true
+    cfg.vm.network :forwarded_port, host: 5985, guest: 5985, id: 'winrm', auto: true
+    #cfg.vm.network :forwarded_port, host: 3389, guest: 3389, id: 'rdp', auto: true
+    #cfg.vm.provider :virtualbox do |vb|
+      #vb.gui = true
+    #end
 
-    #config.vm.guest = :windows
-    config.windows.set_work_network = true
-    #config.vm.network :forwarded_port, guest: 3389, host: 3389 # RDP
-    #config.vm.network :forwarded_port, guest: 5985, host: 5985, id: 'winrm', auto_correct: true # WinRM
-    #config.vm.network :forwarded_port, guest: 22, host: 2222 # SSH
+    ## http://kamalim.github.io/blogs/how-to-create-you-own-vagrant-base-boxes/
+    #cfg.vm.guest = :windows
+    #cfg.vm.network :forwarded_port, host: 3389, guest: 3389, id: 'rdp', auto: true
+    #cfg.vm.network :forwarded_port, host: 5985, guest: 5685, id: 'winrm', :auto => true
 
-    #cfg.vm.synced_folder './shared/vim', "#{WIN7_HOME}/.vim"
-    #cfg.vm.synced_folder './shared/bin', "#{WIN7_HOME}/bin"
-    #cfg.vm.synced_folder '~/Projects', "#{WIN7_HOME}/Projects"
+    ## http://stackoverflow.com/questions/21822768/issue-with-hanging-vagrant-up-on-win7-while-configuring-network-adapter
+    #cfg.vm.boot_timeout = 300
+    #cfg.vm.provider :virtualbox do |vb|
+      #vb.gui = true
+    #end
+    #cfg.windows.halt_timeout = 15
+    #cfg.winrm.username = 'vagrant'
+    #cfg.winrm.password = 'vagrant'
+    #cfg.vm.guest = :windows
+    #cfg.vm.network :forwarded_port, guest: 5985, host: 5685, id: 'winrm', :auto => true
+    #cfg.vm.network :forwarded_port, guest: 5986, host: 5686
+    #cfg.vm.network :forwarded_port, guest: 8080, host: 5687
+    #cfg.vm.network :forwarded_port, guest: 1521, host: 5688
+    #cfg.winrm.host = '192.168.33.33'
+    #cfg.winrm.port = 5985
+    #cfg.windows.set_work_network = true
+    #cfg.vm.network :private_network, ip: '192.168.33.33'
+    #cfg.vm.provision :shell, :path => 'provision.bat'    
+
+    #cfg.vm.synced_folder './shared/vim', '#{WIN7_HOME}/.vim'
+    #cfg.vm.synced_folder './shared/bin', '#{WIN7_HOME}/bin'
+    #cfg.vm.synced_folder '~/Projects', '#{WIN7_HOME}/Projects'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'Windows 7 Ultimate (32-bit)'
