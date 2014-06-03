@@ -26,8 +26,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.box = 'trusty-server-cloudimg-amd64'
     cfg.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
 
-    #cfg.vm.network :private_network, ip: '192.168.33.100'
-
     cfg.vm.synced_folder './shared/vim', "#{UNIX_HOME}/.vim"
     cfg.vm.synced_folder './shared/bin', "#{UNIX_HOME}/bin"
     cfg.vm.synced_folder '~/Projects', "#{UNIX_HOME}/projects"
@@ -57,7 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'win7' do |cfg|
 
     cfg.vm.box = 'windows-7-ultimate-32-jdantonio'
-    cfg.vm.box_url = 'file://~/Desktop/windows-7-ultimate-32-jdantonio.box'
+    cfg.vm.box_url = './boxes/windows-7-ultimate-32-jdantonio.box'
 
     cfg.vm.communicator = 'winrm'
     cfg.windows.set_work_network = true
