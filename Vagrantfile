@@ -43,19 +43,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
     end
 
-    #DOTFILES.each do |file|
-      #config.vm.provision :file do |f|
-        #f.source = file
-        #file = '.bash_profile' if File.basename(file) == '.profile'
-        #f.destination = File.join(UNIX_HOME, File.basename(file))
-      #end
-    #end
+    DOTFILES.each do |file|
+      config.vm.provision :file do |f|
+        f.source = file
+        file = '.bash_profile' if File.basename(file) == '.profile'
+        f.destination = File.join(UNIX_HOME, File.basename(file))
+      end
+    end
 
-    #{'~/.ssh/id_rsa' => '600', '~/.ssh/id_rsa.pub' => '644'}.each do |file, mode|
-      #dest = File.join(UNIX_HOME, '.ssh', File.basename(file))
-      #config.vm.provision :file, source: file, destination: dest
-      #config.vm.provision :shell, inline: "chmod #{mode} #{dest}"
-    #end
+    {'~/.ssh/id_rsa' => '600', '~/.ssh/id_rsa.pub' => '644'}.each do |file, mode|
+      dest = File.join(UNIX_HOME, '.ssh', File.basename(file))
+      config.vm.provision :file, source: file, destination: dest
+      config.vm.provision :shell, inline: "chmod #{mode} #{dest}"
+    end
   end
 
   ### `vagrant package --base "Windows 7 Ultimate (32-bit)" --output ./boxes/windows-7-ultimate-32-jdantonio.box`

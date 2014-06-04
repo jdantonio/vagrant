@@ -60,24 +60,4 @@
   apt: pkg={{ item }} state=installed update-cache=yes
   with_items:
     - oracle-java8-installer
-
-#- name: Setup dotfiles
-  ## assumes that Vagrant has mapped the vim directory
-  #copy: src=./shared/dotfiles/{{ item }} dest=~vagrant/{{ item }} owner=vagrant group=vagrant mode=0644
-  #with_items:
-    #- .gemrc
-    #- .gitconfig
-    #- .gitignore
-    #- .gvimrc
-    #- .irbrc
-    #- .vimrc
-
-#- file: dest=~vagrant/.bash_profile state=absent
-#- copy: src=./shared/dotfiles/.profile dest=~vagrant/.bash_profile owner=vagrant group=vagrant mode=0644
-
-#- name: Setup SSH keys
-  #copy: src={{ lookup('env','HOME') }}/.ssh/{{ item.name }} dest=~vagrant/.ssh/{{ item.name }} owner=vagrant group=vagrant mode={{ item.mode }}
-  #sudo: false
-  #with_items:
-    #- { name: 'id_rsa', mode: '600' }
-    #- { name: 'id_rsa.pub', mode: '644' }
+    - oracle-java8-set-default
