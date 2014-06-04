@@ -70,6 +70,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.network :forwarded_port, host: 5985, guest: 5985, id: 'winrm', auto: true
     cfg.vm.network :forwarded_port, host: 3389, guest: 3389, id: 'rdp', auto: true
 
+    cfg.vm.provider :virtualbox do |vb|
+      vb.gui = true
+    end
+
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'Windows 7 Ultimate (32-bit)'
       v.memory = 4096
