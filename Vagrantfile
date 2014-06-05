@@ -13,8 +13,9 @@ SRC = File.expand_path(File.join(File.dirname(__FILE__), 'shared/dotfiles'))
 DOTFILES = Dir[File.join(SRC, '.??*')].delete_if{|f| File.extname(f) =~ /\.sw?/ }
 
 # Load all VM definitions
+$:.push File.join(File.dirname(__FILE__), 'definitions')
 Dir.glob('definitions/**/*.rb').each do |file|
-  require file
+  load file
 end
 
 def windows_host?
