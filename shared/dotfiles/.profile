@@ -159,7 +159,6 @@ elif [[ $platform == 'linux' ]]; then
 
   alias apt="sudo apt-get"
 
-  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
   export PATH=$PATH:$JAVA_HOME/bin
 fi
 
