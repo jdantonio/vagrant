@@ -1,0 +1,14 @@
+---
+- name: Add stable Nginx ppa
+  apt_repository: repo='ppa:nginx/stable' update_cache=yes
+
+- name: Install Nginx
+  apt: pkg={{item}} state=installed
+  with_items:
+    - nginx
+
+- name: Set nginx to manual start
+  template: src=nginx.override.j2 dest=/etc/init/nginx.override
+
+- name: Ensure Nginx service is stopped
+  service: name=nginx state=stopped enabled=false

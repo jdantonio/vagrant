@@ -1,0 +1,24 @@
+---
+- name: Get the RabbitMQ Apt key
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+
+- name: Add stable RabbitMQ APT repository
+  apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' state=present update_cache=yes
+
+- name: Install RabbitMQ
+  apt: name=rabbitmq-server state=latest update_cache=yes
+
+- name: Enable the management api
+  shell: rabbitmq-plugins enable rabbitmq_management
+
+- name: Stop RabbitMQ before writing new config
+  service: name=rabbitmq-server state=stopped
+
+- name: Set RabbitMQ's Configuration
+  template: src=config.j2 dest=/etc/rabbitmq/rabbitmq.config owner=rabbitmq mode=0400
+
+- name: Set RabbitMQ's Erlang cookie
+  template: src=erlang_cookie.j2 dest=/var/lib/rabbitmq/.erlang.cookie mode=0400
+
+- name: Ensure RabbitMQ service is started
+  service: name=rabbitmq-server state=started

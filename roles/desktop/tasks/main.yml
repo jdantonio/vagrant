@@ -1,0 +1,5 @@
+---
+- name: Install Desktop Packages
+  apt: pkg={{ item }} state=installed update-cache=yes
+  with_items:
+    - ubuntu-desktop

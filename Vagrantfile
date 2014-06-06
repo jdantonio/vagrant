@@ -9,8 +9,11 @@ VAGRANTFILE_API_VERSION = '2'
 UNIX_HOME = '/home/vagrant'
 WIN7_HOME = 'C:/Users/vagrant'
 
-SRC = File.expand_path(File.join(File.dirname(__FILE__), 'shared/dotfiles'))
-DOTFILES = Dir[File.join(SRC, '.??*')].delete_if{|f| File.extname(f) =~ /\.sw?/ }
+# Load all support helpers
+$:.push File.join(File.dirname(__FILE__), 'support')
+Dir.glob('support/**/*.rb').each do |file|
+  load file
+end
 
 # Load all VM definitions
 $:.push File.join(File.dirname(__FILE__), 'definitions')

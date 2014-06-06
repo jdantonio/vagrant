@@ -1,0 +1,36 @@
+---
+- name: Ensure python-pycurl is installed
+  apt: pkg=python-pycurl state=installed
+
+- name: Ensure Elasticsearch apt signing key is installed
+  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+
+- name: Ensure Elasticsearch 1.0.x repository is installed
+  apt_repository: repo="deb http://packages.elasticsearch.org/elasticsearch/1.0/debian stable main" state=present update_cache=yes
+
+- name: Ensure Elasticsearch is installed
+  apt: pkg={{item}} state=installed
+  with_items:
+    - elasticsearch
+
+- name: Set Elasticsearch to manual start
+  template: src=elasticsearch.override.j2 dest=/etc/init/elasticsearch.override
+
+- name: Add Elasticsearch to path (so we can run from command line)
+  lineinfile: >
+    dest=/etc/environment
+    state=present
+    backrefs=yes
+    regexp='PATH=(["]*)((?!.*?\/usr\/share\/elasticsearch\/bin).*?)(["]*)$'
+    line="PATH=\1\2:/usr/share/elasticsearch/bin\3"
+
+- name: Create the Elasticsearch data directory (so we can run from command line)
+  file: >
+    dest=/usr/share/elasticsearch/data
+    state=directory
+    owner=root
+    group=root
+    mode=777
+
+- name: Ensure Elasticsearch service is stopped
+  service: name=elasticsearch state=stopped enabled=false
