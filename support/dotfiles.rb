@@ -1,4 +1,4 @@
-SRC = File.expand_path(File.join(File.dirname(__FILE__), 'shared/dotfiles'))
+SRC = File.expand_path(File.join(File.dirname(__FILE__), '../shared/dotfiles'))
 DOTFILES = Dir[File.join(SRC, '.??*')].delete_if{|f| File.extname(f) =~ /\.sw?/ }
 
 def setup_dotfiles(cfg)
