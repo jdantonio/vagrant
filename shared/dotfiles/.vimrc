@@ -91,6 +91,12 @@ noremap Y y$
 " force write a file as sudo
 ca w!! w !sudo tee "%"
 
+" movement between splits
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+
 " setup status line
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
 "set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
