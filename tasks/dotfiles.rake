@@ -41,7 +41,11 @@ namespace :dotfiles do
   # git tasks -- used as dependencies
   
   task :git_stash do |t|
-    sh 'git stash'
+    begin
+      sh 'git stash'
+    rescue
+      # suppress
+    end
   end
 
   task :git_commit do |t|
@@ -53,7 +57,11 @@ namespace :dotfiles do
   end
 
   task :git_stash_apply do |t|
-    sh 'git stash apply'
+    begin
+      sh 'git stash apply'
+    rescue
+      # suppress
+    end
   end
 
   # tasks that need to stash git changes
