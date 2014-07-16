@@ -36,3 +36,6 @@ doc/
 .ruby-gemset
 .ruby-version
 .rvmrc
+
+# Vim
+shared/vim/bundle/
