@@ -83,7 +83,8 @@ nnoremap <silent> <F4> :YRShow<CR>
 nnoremap <silent> <F5> :BufExplorer<CR>
 nnoremap <silent> <F6> :Explore<CR><CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
-nnoremap <silent> <F8> :<C-F>
+nnoremap <silent> <F8> :UndotreeToggle<cr>
+nnoremap <silent> <F9> :<C-F>
 
 " other command shortcuts
 command E Explore
@@ -113,6 +114,12 @@ let NERDTreeCaseSensitiveSort=0
 let NERDTreeChDirMode=1
 let NERDTreeHighlightCursorline=1
 let NERDTreeQuitOnOpen=0
+
+" enable and configure persistent undo
+if has("persistent_undo")
+  set undodir='~/.undodir/'
+  set undofile
+endif
 
 " settings for Vimerl
 let erlang_show_errors = 0
