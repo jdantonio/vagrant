@@ -4,19 +4,23 @@ namespace :dotfiles do
 
   LOCAL = File.expand_path('~/')
   REPO = File.expand_path(File.join(File.dirname(__FILE__), '../shared/dotfiles'))
-  DOTFILES = Dir[File.join(REPO, '.??*')].delete_if{|f| File.extname(f) =~ /\.sw?/ }
+  DOTFILES = Dir[File.join(REPO, '.??*')].delete_if{|f| File.extname(f) =~ /\.sw?/ } << 'global.gems'
+
+  def local_destination_for_file(file)
+    file == 'global.gems' ? File.join(LOCAL, '.rvm/gemsets') : LOCAL
+  end
 
   desc 'Update dotfiles in vagrant repo by getting from local'
   task :get do |t|
     DOTFILES.each do |file|
-      sh "cp #{File.join(LOCAL, File.basename(file))} #{REPO}"
+      sh "cp #{File.join(local_destination_for_file(file), File.basename(file))} #{REPO}"
     end
   end
 
   desc 'Update local dotfiles by putting from vagrant repo'
   task :put do |t|
     DOTFILES.each do |file|
-      sh "cp #{File.join(REPO, File.basename(file))} #{LOCAL}"
+      sh "cp #{File.join(REPO, File.basename(file))} #{local_destination_for_file(file)}"
     end
   end
 
@@ -25,7 +29,7 @@ namespace :dotfiles do
     DOTFILES.each do |file|
       basename = File.basename(file)
       repo = File.join(REPO, basename)
-      local = File.join(LOCAL, basename)
+      local = File.join(local_destination_for_file(file), basename)
 
       case File.mtime(repo) <=> File.mtime(local)
       when -1
@@ -39,7 +43,7 @@ namespace :dotfiles do
   end
 
   # git tasks -- used as dependencies
-  
+
   task :git_stash do |t|
     begin
       sh 'git stash'
