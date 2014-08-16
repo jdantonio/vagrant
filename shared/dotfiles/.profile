@@ -123,17 +123,8 @@ if [[ $platform == 'mac' ]]; then
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
 
-  es.start() {
-    elasticsearch -d
-  }
-
-  es.stop() {
-    curl -XPOST 'http://localhost:9200/_cluster/nodes/_local/_shutdown'
-  }
-
-  es.stop.all() {
-    curl -XPOST 'http://localhost:9200/_shutdown'
-  }
+  # Haskell (PureSctipt) development
+  export PATH="$PATH:~/.cabal/bin"
 
   # brew install apple-gcc42
   update.stuff() {
