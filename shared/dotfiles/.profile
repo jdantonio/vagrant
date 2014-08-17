@@ -124,7 +124,7 @@ if [[ $platform == 'mac' ]]; then
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
 
   # Haskell (PureSctipt) development
-  export PATH="$PATH:~/.cabal/bin"
+  export PATH="$PATH:$HOME/.cabal/bin"
 
   # brew install apple-gcc42
   update.stuff() {
