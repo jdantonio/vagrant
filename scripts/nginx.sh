@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-#set -e
-
-echo 'Running Ubuntu nginx script...'
+set -e
+echo 'Running nginx script...'
 
 sudo -s -u vagrant
 

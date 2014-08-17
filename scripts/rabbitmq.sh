@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-#set -e
-
-echo 'Running Ubuntu rabbitmq script...'
+set -e
+echo 'Running rabbitmq script...'
 
 sudo -s -u vagrant
 

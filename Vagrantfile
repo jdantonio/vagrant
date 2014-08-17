@@ -3,7 +3,7 @@
 
 require 'vagrant/util/platform'
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+# Vagrantfile API/syntax version.
 VAGRANTFILE_API_VERSION = '2'
 
 # Load files in the support directory
@@ -22,9 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.box = 'ubuntu/trusty64'
 
     cfg.vm.provision :shell, :path => 'scripts/common.sh'
+    cfg.vm.provision :shell, :path => 'scripts/jdk.sh'
     cfg.vm.provision :shell, :path => 'scripts/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'scripts/rvm-rubies.sh'
-    cfg.vm.provision :shell, :path => 'scripts/jdk.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'Ubuntu Server 14.04'
@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # from support
-    copy_ssh_keys(cfg) if Vagrant::Util::Platform.windows?
+    copy_ssh_keys(cfg)
     setup_dotfiles(cfg)
   end
 end

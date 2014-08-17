@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-#set -e
-
-echo 'Running Ubuntu elastic search script...'
+set -e
+echo 'Running elasticsearch script...'
 
 es_path="deb http://packages.elasticsearch.org/elasticsearch/1.0/debian stable main"
 source_path="/etc/apt/sources.list" 

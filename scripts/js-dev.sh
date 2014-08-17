@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-#set -e
-
+set -e
 echo 'Running js development script...'
 
 sudo -s -u vagrant

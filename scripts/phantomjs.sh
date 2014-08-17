@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-#set -e
-
-echo 'Running Ubuntu phantomjs script...'
+set -e
+echo 'Running phantomjs script...'
 
 sudo -s -u vagrant
 
