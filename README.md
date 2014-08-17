@@ -1,3 +1,3 @@
-# Vagrant + Ansible = Love
+# I <3 Vagrant
 
-My personal Vagrant/Ansible setup for Ruby development on Ubuntu.
+My personal Vagrant setup for Ruby development on Ubuntu.

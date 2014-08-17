@@ -1,4 +1,0 @@
----
-- name: Install RVM
-  shell: \curl -sSL https://get.rvm.io | bash -s stable
-  sudo: false
