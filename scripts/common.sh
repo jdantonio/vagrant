@@ -14,6 +14,7 @@ apt-get -y purge --auto-remove chef
 
 apt-get -y install \
   build-essential \
+  libncurses5-dev \
   tree \
   ack-grep \
   curl \
