@@ -64,7 +64,6 @@ alias df='df -kTh'
 alias ff='find . -name'
 alias psx='ps aux | grep'
 alias stop="kill -9"
-alias me="curl remoteip.me"
 
 if [[ $platform == 'mac' ]]; then
   alias ls='ls -G'
@@ -88,6 +87,13 @@ alias egrep='egrep --color=auto'
 alias clean='find . -name *.swp -print0 | xargs -0 rm'
 
 alias got='git' # because I keep mistyping this
+alias g='git'
+
+alias v='vagrant'
+v.go() {
+  vagrant up
+  vagrant ssh
+}
 
 # Ruby development
 
