@@ -125,6 +125,11 @@ if [[ $platform == 'mac' ]]; then
 
   # Haskell (PureSctipt) development
   export PATH="$PATH:$HOME/.cabal/bin"
+  cabal.upgrade() {
+    cabal update
+    cabal install cabal-install
+    cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall
+  }
 
   # brew install apple-gcc42
   update.stuff() {
@@ -135,6 +140,7 @@ if [[ $platform == 'mac' ]]; then
     brew prune
     rvm get stable
     gem update --system
+    cabal.upgrade
   }
 
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
