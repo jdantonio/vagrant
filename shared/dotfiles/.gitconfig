@@ -19,6 +19,7 @@
 	llatest = for-each-ref --sort=-committerdate refs/heads --format='%(committerdate:short) %(refname:short)'
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   mine = log --author="Jerry" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  diff = diff --word-diff -w
 [color]
 	branch = auto
 	diff = auto
