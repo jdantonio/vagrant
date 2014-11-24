@@ -132,8 +132,8 @@ if [[ $platform == 'mac' ]]; then
   # Haskell (PureSctipt) development
   export PATH="$PATH:$HOME/.cabal/bin"
   cabal.upgrade() {
-    cabal update
     cabal install cabal-install
+    cabal update
     cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall
   }
 
@@ -144,9 +144,9 @@ if [[ $platform == 'mac' ]]; then
     brew tap homebrew/dupes
     brew upgrade
     brew prune
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     rvm get stable
     gem update --system
-    cabal update
     cabal.upgrade
   }
 
