@@ -146,6 +146,7 @@ if [[ $platform == 'mac' ]]; then
     brew prune
     rvm get stable
     gem update --system
+    cabal update
     cabal.upgrade
   }
 
