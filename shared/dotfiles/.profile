@@ -120,6 +120,8 @@ fi
 alias ackr='ack --type=ruby'
 alias acke='ack --type=erlang'
 
+alias harmony='node --harmony'
+
 if [[ $platform == 'mac' ]]; then
 
   alias mate='open -a /Applications/TextMate.app'
@@ -157,6 +159,7 @@ elif [[ $platform == 'linux' ]]; then
   update.stuff() {
     sudo apt-get update
     sudo apt-get upgrade
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     rvm get stable
     gem update --system
   }
