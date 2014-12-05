@@ -40,7 +40,6 @@ if [[ $platform == 'mac' ]]; then
   export PATH=/usr/local/sbin:/usr/local/bin:$PATH:~/bin
   export COMMAND_MODE=unix2003
 elif [[ $platform == 'linux' ]]; then
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
   export PATH=$PATH:~/bin:~/Dropbox/VHT/Git
 fi
 
@@ -180,4 +179,5 @@ fi
 # RVM
 # http://rvm.beginrescueend.com/
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
