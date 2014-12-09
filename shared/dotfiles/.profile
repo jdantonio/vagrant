@@ -33,6 +33,9 @@ elif [[ $platform == 'mac' ]]; then
     . `brew --prefix`/etc/bash_completion
     export PS1='\[\e]0;\w\a\]\n\[\e[0m\][\[\e[36m\]\t \[\e[32m\]\u \[\e[33m\]\w\[\e[32m\]$(__git_ps1 " (%s)")\[\e[0m\]]\n$ '
   fi
+#elif [[ $platform == 'windows' ]]; then
+  ## The default for Git Bash on Windows
+  #export PS1='\[\033]0;$MSYSTEM:${PWD//[^[:ascii:]]/?}\007\]\n\[\033[32m\]\u@\h \[\033[33m\]\w$(__git_ps1)\[\033[0m\]\n$'
 fi
 
 if [[ $platform == 'mac' ]]; then
