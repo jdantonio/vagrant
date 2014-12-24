@@ -99,8 +99,12 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 
 " setup status line
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
-"set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
+if has("win32")
+  set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
+else
+  set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
+  "set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]
+end
 set laststatus=2
 
 " setup tab key for navigating between buffers

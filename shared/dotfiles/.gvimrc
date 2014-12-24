@@ -15,7 +15,7 @@ if has("mac")
 elseif has("unix")
 	:silent cd $HOME/Projects
 elseif has("win32")
-	:silent cd C:/Projects
+	:silent cd $HOME/Projects
 endif
 
 set vb t_vb=
