@@ -133,15 +133,13 @@ if [[ $platform == 'mac' ]]; then
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
 
-  # Haskell (PureSctipt) development
+  # Haskell and PureSctipt development
   export PATH="$PATH:$HOME/.cabal/bin"
-  cabal.update() {
-    cabal update
-    cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall
-  }
   cabal.upgrade() {
     cabal install cabal-install
     cabal.update
+    cabal update
+    cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall
   }
 
   # brew install apple-gcc42
@@ -154,7 +152,6 @@ if [[ $platform == 'mac' ]]; then
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     rvm get stable
     gem update --system
-    cabal.update
   }
 
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
