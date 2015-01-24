@@ -16,7 +16,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
    platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
    platform='mac'
-elif [[ "$unamestr" == 'MINGW32_NT_6.1' ]]; then
+elif [[ "$unamestr" == 'MINGW32_NT-6.1' ]]; then
    platform='windows'
 fi
 
@@ -169,6 +169,10 @@ elif [[ $platform == 'linux' ]]; then
   alias apt="sudo apt-get"
 
   export PATH=$PATH:$JAVA_HOME/bin
+
+elif [[ $platform == 'windows' ]]; then
+
+  alias gvim='"C:\Program Files (x86)\Vim\vim74\gvim.exe" &'
 fi
 
 # set PATH so it includes user's private bin if it exists
