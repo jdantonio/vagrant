@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true unless Vagrant::Util::Platform.windows?
 
   # Ubuntu for development
-  config.vm.define 'linux', primary: true do |cfg|
+  config.vm.define 'ubuntu', primary: true do |cfg|
 
     cfg.vm.box = 'ubuntu/trusty64'
 
@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.provision :shell, :path => 'scripts/rvm-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
-      v.name = 'Ubuntu Server 14.04'
+      v.name = 'Ubuntu'
       v.memory = 4096
       v.cpus = CPUS
     end
