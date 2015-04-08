@@ -97,6 +97,17 @@ v.go() {
   vagrant ssh
 }
 
+if [[ $platform == 'linux' ]]; then
+  alias gitg='git g'
+  alias gitx='git g'
+  alias open='nautilus'
+  alias ack='ack-grep'
+fi
+
+alias ackr='ack --type=ruby'
+alias acke='ack --type=erlang'
+alias ackj='ack --type=javascript'
+
 # Ruby development
 
 alias be='bundle exec'
@@ -112,15 +123,12 @@ alias jr='jruby --1.9 -S'
 
 alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
 
-if [[ $platform == 'linux' ]]; then
-  alias gitg='git g'
-  alias gitx='git g'
-  alias open='nautilus'
-  alias ack='ack-grep'
-fi
+# JavaScript development
 
-alias ackr='ack --type=ruby'
-alias acke='ack --type=erlang'
+js.init() {
+  npm init
+  npm install grunt --save-dev
+}
 
 alias harmony='node --harmony'
 
