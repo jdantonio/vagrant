@@ -123,6 +123,18 @@ alias jr='jruby --1.9 -S'
 
 alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
 
+if [[ $platform == 'mac' ]]; then
+  rbx.setupbuild() {
+    brew update
+    brew tap homebrew/dupes
+    brew install automake bison openssl llvm zlib
+    brew upgrade
+    rvm use system
+    gem install bundler
+    gem update
+  }
+fi
+
 # JavaScript development
 
 js.init() {
