@@ -171,6 +171,7 @@ if [[ $platform == 'mac' ]]; then
     brew prune
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     rvm get stable
+    rvm cleanup all
     gem update --system
   }
 
@@ -183,6 +184,7 @@ elif [[ $platform == 'linux' ]]; then
     sudo apt-get upgrade
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     rvm get stable
+    rvm cleanup all
     gem update --system
   }
 
