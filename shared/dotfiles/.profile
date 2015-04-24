@@ -152,6 +152,8 @@ if [[ $platform == 'mac' ]]; then
 
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
+  
+  alias endings='find . -exec dos2unix \{\} \; -print'
 
   # Haskell and PureSctipt development
   export PATH="$PATH:$HOME/.cabal/bin"
