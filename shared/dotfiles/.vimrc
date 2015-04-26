@@ -62,18 +62,6 @@ else
   colors darkZ
 endif
 
-" set the font
-" use ':set gfn?' in gVim to see the current font
-if has("mac")
-  set guifont=Inconsolata:h18.00
-elseif has("unix")
-  set guifont=Inconsolata\ Medium\ 14
-elseif has("win32")
-  set guifont=Lucida_Console:h12
-else
-  set guifont=Inconsolata:h18.00
-endif
-
 " setup spell checker
 set spell spl=en_us " Select language
 set nospell " Turn it off at start
