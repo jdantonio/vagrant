@@ -102,6 +102,7 @@ if [[ $platform == 'linux' ]]; then
   alias gitx='git g'
   alias open='nautilus'
   alias ack='ack-grep'
+  alias tax='terminator --fullscreen &'
 fi
 
 alias ackr='ack --type=ruby'
