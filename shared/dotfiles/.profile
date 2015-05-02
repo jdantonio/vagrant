@@ -124,6 +124,20 @@ alias jr='jruby --1.9 -S'
 
 alias yard-graph="yard graph --dependencies --empty-mixins --full | dot -T png -o diagram.png"
 
+re.bundle() {
+  rm Gemfile.lock
+  gem install bundler
+  bundle install
+}
+
+re.bake() {
+  rm Gemfile.lock
+  gem install bundler
+  bundle install
+  bundle exec clean
+  bundle exec compile
+}
+
 if [[ $platform == 'mac' ]]; then
   rbx.setupbuild() {
     brew update
