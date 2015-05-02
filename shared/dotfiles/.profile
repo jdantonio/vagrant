@@ -134,8 +134,8 @@ re.bake() {
   rm Gemfile.lock
   gem install bundler
   bundle install
-  bundle exec clean
-  bundle exec compile
+  bundle exec rake clean
+  bundle exec rake compile
 }
 
 if [[ $platform == 'mac' ]]; then
