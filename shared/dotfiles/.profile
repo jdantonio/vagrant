@@ -87,6 +87,7 @@ alias egrep='egrep --color=auto'
 
 #alias clean='find . -name *.*~ -print0 | xargs -0 rm'
 alias clean='find . -name *.swp -print0 | xargs -0 rm'
+alias undos='find ./ -type f -exec dos2unix {} \;'
 
 alias got='git' # because I keep mistyping this
 alias g='git'
