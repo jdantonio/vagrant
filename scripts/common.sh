@@ -19,7 +19,7 @@ sudo apt-get -y install build-essential \
 	vim \
 	bash-completion 
 
-mkdir ~/bin
+mkdir -p ~/bin
 
 echo '[[ -f ~/.personal/bash_aliases ]] && source ~/.personal/bash_aliases' >> .bash_aliases
 
