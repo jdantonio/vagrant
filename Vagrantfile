@@ -21,10 +21,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     cfg.vm.box = 'ubuntu/trusty64'
 
-    cfg.vm.provision :shell, :path => 'scripts/common.sh'
+    cfg.vm.provision :shell, :privileged => false, :path => 'scripts/common.sh'
+    cfg.vm.provision :shell, :privileged => false, :path => 'scripts/ruby-rvm.sh', :args => ['1.9.3','2.0','2.1','2.2']
     cfg.vm.provision :shell, :path => 'scripts/jdk.sh'
-    cfg.vm.provision :shell, :path => 'scripts/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'scripts/rvm-rubies.sh'
+    cfg.vm.provision :shell, :path => 'scripts/javascript.sh'
+    cfg.vm.provision :shell, :path => 'scripts/phantomjs.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'Ubuntu'

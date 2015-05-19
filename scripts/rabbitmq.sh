@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
-set -e
-echo 'Running rabbitmq script...'
+#set -e
+
+echo 'Running Ubuntu rabbitmq script...'
 
 sudo -s -u vagrant
 
-if ! grep -q "deb http://www.rabbitmq.com/debian/ testing main" /etc/apt/sources.list; then
-  echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
+if ! grep -q "deb http://www.rabbitmq.com/debian/ testing main" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
 fi
 
-wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-apt-key add rabbitmq-signing-key-public.asc
-rm rabbitmq-signing-key-public.asc
-apt-get -y update
-apt-get -y install rabbitmq-server
+curl -s http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add -
+apt-get -qy update
+apt-get -qy install rabbitmq-server
 
 rabbitmq-plugins enable rabbitmq_management
 

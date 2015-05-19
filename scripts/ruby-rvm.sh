@@ -3,21 +3,22 @@
 set -e
 echo 'Running ruby-rvm script...'
 
-as_vagrant='sudo -u vagrant -H bash -l -c'
-home='/home/vagrant'
-sudo -u vagrant touch $home/.bash_profile
-
 # do not generate documentation for gems
-$as_vagrant 'echo "gem: --no-ri --no-rdoc" >> ~/.gemrc'
+echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
 # install rvm
-$as_vagrant 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3'
-$as_vagrant 'curl -L https://get.rvm.io | bash -s stable'
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
 
-# source rvm for usage outside of package scripts
-rvm_path="$home/.rvm/scripts/rvm"
+source ~/.bash_profile
 
-if ! grep -q "$rvm_path" $home/.bash_profile; then
-  echo "source $rvm_path" >> $home/.bash_profile
-  source $home/.bash_profile
-fi
+for ruby_version in "$@"
+do
+    rvm install "${ruby_version}"
+done
+
+# because we manipulate the path in the profile,
+# we'll add this final line that will let rvm
+# setup the path so it's happy
+echo -e '\nrvm use default > /dev/null 2>&1\n' >> ~/.profile
+echo -e '\nrvm use default > /dev/null 2>&1\n' >> ~/.bash_profile
