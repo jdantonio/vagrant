@@ -162,8 +162,6 @@ alias harmony='node --harmony'
 
 if [[ $platform == 'mac' ]]; then
 
-  alias mate='open -a /Applications/TextMate.app'
-  alias tower='open -a /Applications/Tower.app'
   alias gitx="open -a /Applications/GitX.app"
 
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
@@ -171,16 +169,6 @@ if [[ $platform == 'mac' ]]; then
   
   alias endings='find . -exec dos2unix \{\} \; -print'
 
-  # Haskell and PureSctipt development
-  export PATH="$PATH:$HOME/.cabal/bin"
-  cabal.upgrade() {
-    cabal install cabal-install
-    cabal.update
-    cabal update
-    cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall
-  }
-
-  # brew install apple-gcc42
   update.stuff() {
     brew update
     brew tap homebrew/versions
@@ -194,6 +182,9 @@ if [[ $platform == 'mac' ]]; then
   }
 
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+  export DYLD_LIBRARY_PATH=/usr/local/mysql-5.1.73-osx10.6-x86_64/lib
+  export PATH=$PATH:/usr/local/mysql/bin
 
 elif [[ $platform == 'linux' ]]; then
 
