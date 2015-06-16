@@ -139,6 +139,13 @@ re.bake() {
   bundle exec rake compile
 }
 
+re.migrate() {
+  bundle exec rake db:drop
+  bundle exec rake db:create
+  bundle exec rake db:migrate
+  bundle exec rake db:migrate
+}
+
 if [[ $platform == 'mac' ]]; then
   rbx.setupbuild() {
     brew update
