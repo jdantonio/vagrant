@@ -9,6 +9,7 @@
 	br = branch
 	bra = branch -a
 	brr = branch -r
+  ff = merge --ff-only
 	mff = merge --no-ff
 	put = push origin master
 	rollback = reset --hard HEAD@{1}
@@ -34,3 +35,7 @@
 	main-window-view = FileView
 	file-view-vpane-position = 493
 	history-view-vpane-position = 707
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[url "ssh://git@git.2checkout.com/"]
+  insteadOf = http://git.2checkout.com/
