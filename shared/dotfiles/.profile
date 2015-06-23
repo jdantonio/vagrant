@@ -51,6 +51,7 @@ fi
 #-------------------
 
 export EDITOR=vim
+export HISTCONTROL=ignoredups
 
 #-------------------
 # Personnal Aliases
