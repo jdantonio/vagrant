@@ -208,6 +208,9 @@ elif [[ $platform == 'linux' ]]; then
 
   export PATH=$PATH:$JAVA_HOME/bin
 
+  export GOROOT=/opt/go
+  export PATH=$PATH:$GOROOT/bin
+
 elif [[ $platform == 'windows' ]]; then
 
   alias gvim='"C:\Program Files (x86)\Vim\vim74\gvim.exe" &'
