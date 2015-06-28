@@ -13,11 +13,11 @@
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-   platform='linux'
+  platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
-   platform='mac'
+  platform='mac'
 elif [[ "$unamestr" == 'MINGW32_NT-6.1' ]]; then
-   platform='windows'
+  platform='windows'
 fi
 
 #-------------------
@@ -34,16 +34,18 @@ elif [[ $platform == 'mac' ]]; then
     . `brew --prefix`/etc/bash_completion
     export PS1='\[\e]0;\w\a\]\n\[\e[0m\][\[\e[36m\]\t \[\e[32m\]\u \[\e[33m\]\w\[\e[32m\]$(__git_ps1 " (%s)")\[\e[0m\]]\n$ '
   fi
-#elif [[ $platform == 'windows' ]]; then
+  #elif [[ $platform == 'windows' ]]; then
   #export PS1='\[\033]0;$MSYSTEM:${PWD//[^[:ascii:]]/?}\007\]\n\[\033[32m\]\u@\h \[\033[33m\]\w$(__git_ps1)\[\033[0m\]\n$ '
 fi
 
 if [[ $platform == 'mac' ]]; then
-  export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+  # mac-specific stuff
   export PATH=/usr/local/sbin:/usr/local/bin:$PATH:~/bin
   export COMMAND_MODE=unix2003
-elif [[ $platform == 'linux' ]]; then
-  export PATH=$PATH:~/bin:~/Dropbox/VHT/Git
+#elif [[ $platform == 'linux' ]]; then
+  # linux-specific stuff
+#elif [[ $platform == 'windows' ]]; then
+  # windows-specific stuff
 fi
 
 #-------------------
@@ -88,7 +90,7 @@ alias egrep='egrep --color=auto'
 
 #alias clean='find . -name *.*~ -print0 | xargs -0 rm'
 alias clean='find . -name *.swp -print0 | xargs -0 rm'
-alias undos='find ./ -type f -exec dos2unix {} \;'
+alias undos='find . -exec dos2unix \{\} \; -print'
 
 alias got='git' # because I keep mistyping this
 alias g='git'
@@ -108,15 +110,19 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 alias ackr='ack --type=ruby'
-alias acke='ack --type=erlang'
+alias ackg='ack --type=go'
 alias ackj='ack --type=javascript'
 
 # Ruby development
 
 alias be='bundle exec'
-alias bake='bundle exec rake'
 alias baked='bundle exec rdebug rake'
 alias bc='bundle console'
+
+alias rs='bundle exec rails server'
+alias rc='bundle exec rails console'
+alias rg='bundle exec rails generate'
+alias rd='bundle exec rails dbconsole'
 
 alias cuke='bundle exec cucumber'
 alias spec='bundle exec rspec -fd --color'
@@ -145,11 +151,14 @@ re.migrate() {
   bundle exec rake db:create
   bundle exec rake db:migrate
   bundle exec rake db:seed
+<<<<<<< HEAD
 }
 
 re.prepare() {
   re.migrate
   bundle exec rake db:test:prepare
+=======
+>>>>>>> 0dbe7cf58659d2e2ea86f1d358266da2cdc2ba81
 }
 
 if [[ $platform == 'mac' ]]; then
@@ -179,8 +188,6 @@ if [[ $platform == 'mac' ]]; then
 
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
-  
-  alias endings='find . -exec dos2unix \{\} \; -print'
 
   update.stuff() {
     brew update
@@ -214,6 +221,11 @@ elif [[ $platform == 'linux' ]]; then
 
   export PATH=$PATH:$JAVA_HOME/bin
 
+  export GOROOT=/opt/go
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOROOT/bin
+  export PATH=$PATH:$GOPATH/bin
+
 elif [[ $platform == 'windows' ]]; then
 
   alias gvim='"C:\Program Files (x86)\Vim\vim74\gvim.exe" &'
@@ -221,7 +233,7 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+  PATH="$HOME/bin:$PATH"
 fi
 
 # RVM
