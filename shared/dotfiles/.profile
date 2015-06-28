@@ -203,6 +203,8 @@ if [[ $platform == 'mac' ]]; then
   export DYLD_LIBRARY_PATH=/usr/local/mysql-5.1.73-osx10.6-x86_64/lib
   export PATH=$PATH:/usr/local/mysql/bin
 
+  export GOROOT=/usr/local/go
+
 elif [[ $platform == 'linux' ]]; then
 
   update.stuff() {
@@ -219,14 +221,17 @@ elif [[ $platform == 'linux' ]]; then
   export PATH=$PATH:$JAVA_HOME/bin
 
   export GOROOT=/opt/go
-  export GOPATH=$HOME/go
-  export PATH=$PATH:$GOROOT/bin
-  export PATH=$PATH:$GOPATH/bin
 
 elif [[ $platform == 'windows' ]]; then
 
   alias gvim='"C:\Program Files (x86)\Vim\vim74\gvim.exe" &'
+
+  export GOROOT=/c/go
 fi
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
