@@ -131,31 +131,6 @@ autocmd BufNewFile,BufReadPre *.txt set spell spl=en_us
 autocmd BufNewFile,BufReadPre *.txt set number
 autocmd BufNewFile,BufReadPre *.txt let g:autoclose_on=1
 
-"" settings for Go plugins
-
-"" https://github.com/dgryski/vim-godef
-"let g:godef_split=0 " horizontal split
-"let g:godef_split=1 " reuse current window
-let g:godef_split=2 " new tab
-"let g:godef_split=3 " vertical split
-
-"let g:godef_same_file_in_same_window=0 " same file jumps to new split
-let g:godef_same_file_in_same_window=1 " same file jumps to current window
-
-"" https://github.com/rjohnsondev/vim-compiler-go
-autocmd FileType go compiler golang
-"let g:golang_onwrite = 0 " disable calling on write
-"let g:golang_cwindow = 0 " disable QuickFix window
-"let g:golang_inline_highlight = 0 " disable highlights
-if has("mac")
-elseif has("unix")
-  let g:golang_goroot = "/opt/go"
-elseif has("win32")
-endif
-
-"" https://github.com/vim-jp/vim-go-extra
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 " Windows-like clipboard behavior
 " http://superuser.com/questions/10588/how-to-make-cut-copy-paste-in-gvim-on-ubuntu-work-with-ctrlx-ctrlc-ctrlv
 if has('gui_running')
