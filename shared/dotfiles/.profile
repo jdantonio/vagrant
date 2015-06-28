@@ -151,14 +151,11 @@ re.migrate() {
   bundle exec rake db:create
   bundle exec rake db:migrate
   bundle exec rake db:seed
-<<<<<<< HEAD
 }
 
 re.prepare() {
   re.migrate
   bundle exec rake db:test:prepare
-=======
->>>>>>> 0dbe7cf58659d2e2ea86f1d358266da2cdc2ba81
 }
 
 if [[ $platform == 'mac' ]]; then
