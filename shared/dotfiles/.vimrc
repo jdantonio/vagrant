@@ -4,6 +4,10 @@
 "if has('gui_running')
 "endif
 
+" https://github.com/tpope/vim-pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 let mapleader=","
 
 " Vim compatiblity and filetype handling
@@ -69,10 +73,8 @@ set nospell " Turn it off at start
 " set hotkeys for plugins
 nnoremap <silent> <F4> :YRShow<CR>
 nnoremap <silent> <F5> :BufExplorer<CR>
-"nnoremap <silent> <F6> :Explore<CR><CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :UndotreeToggle<cr>
-"nnoremap <silent> <F9> :<C-F>
 
 " other command shortcuts
 noremap Y y$
