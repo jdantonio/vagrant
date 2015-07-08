@@ -116,8 +116,10 @@ alias ackj='ack --type=javascript'
 # Ruby development
 
 alias be='bundle exec'
-alias baked='bundle exec rdebug rake'
 alias bc='bundle console'
+alias bake='bundle exec rake'
+alias baket='bundle exec rake -T'
+alias baked='bundle exec rdebug rake'
 
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
