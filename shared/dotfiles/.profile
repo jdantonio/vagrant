@@ -200,6 +200,18 @@ if [[ $platform == 'mac' ]]; then
     gem update --system
   }
 
+  docker.reset() {
+    boot2docker stop
+    boot2docker delete
+    boot2docker init
+    boot2docker start
+  }
+
+  docker.shell() {
+    boot2docker start
+    $(boot2docker shellinit)
+  }
+
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
   export DYLD_LIBRARY_PATH=/usr/local/mysql-5.1.73-osx10.6-x86_64/lib
