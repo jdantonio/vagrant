@@ -220,6 +220,10 @@ elif [[ $platform == 'linux' ]]; then
 
   alias apt="sudo apt-get"
 
+  docker.update() {
+    wget -qO- https://get.docker.com/ | sh
+  }
+
   export PATH=$PATH:$JAVA_HOME/bin
 
   export GOROOT=/opt/go
