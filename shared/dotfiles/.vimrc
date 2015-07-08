@@ -76,6 +76,12 @@ nnoremap <silent> <F5> :BufExplorer<CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :UndotreeToggle<cr>
 
+" tabular
+nnoremap <leader><bar> :Tabularize /\|/<cr>
+nnoremap <leader>> :Tabularize /=>/<cr>
+nnoremap <leader>= :Tabularize /=/<cr>
+nnoremap <leader>: :Tabularize /:\zs/<cr>
+
 " other command shortcuts
 noremap Y y$
 " force write a file as sudo
