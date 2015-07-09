@@ -255,6 +255,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
+go.here() {
+  here=/${PWD#*/}
+  export GOPATH=$here
+  export GOBIN=$here/bin
+  export PATH=$PATH:$GOBIN
+}
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
@@ -265,3 +272,4 @@ fi
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "/Users/Jerry/.gvm/scripts/gvm" ]] && source "/Users/Jerry/.gvm/scripts/gvm"
