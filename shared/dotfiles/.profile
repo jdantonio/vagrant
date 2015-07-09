@@ -272,4 +272,3 @@ fi
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "/Users/Jerry/.gvm/scripts/gvm" ]] && source "/Users/Jerry/.gvm/scripts/gvm"
