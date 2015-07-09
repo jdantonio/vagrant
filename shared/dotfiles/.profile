@@ -207,8 +207,12 @@ if [[ $platform == 'mac' ]]; then
     boot2docker start
   }
 
-  docker.shell() {
+  docker.start() {
     boot2docker start
+    $(boot2docker shellinit)
+  }
+
+  docker.shell() {
     $(boot2docker shellinit)
   }
 
