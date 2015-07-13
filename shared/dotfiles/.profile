@@ -251,6 +251,10 @@ elif [[ $platform == 'windows' ]]; then
   export GOROOT=/c/go
 fi
 
+go.testem() {
+  go test -v ./...
+}
+
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
