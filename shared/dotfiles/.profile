@@ -255,6 +255,10 @@ go.testem() {
   go test -v ./...
 }
 
+go.bundle() {
+  go get -t ./...
+}
+
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
