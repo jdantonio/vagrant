@@ -13,14 +13,22 @@ namespace :dotfiles do
   desc 'Update dotfiles in vagrant repo by getting from local'
   task :get do |t|
     DOTFILES.each do |file|
-      sh "cp #{File.join(local_destination_for_file(file), File.basename(file))} #{REPO}"
+      begin
+        sh "cp #{File.join(local_destination_for_file(file), File.basename(file))} #{REPO}"
+      rescue
+        puts "Error copying #{file}"
+      end
     end
   end
 
   desc 'Update local dotfiles by putting from vagrant repo'
   task :put do |t|
     DOTFILES.each do |file|
-      sh "cp #{File.join(REPO, File.basename(file))} #{local_destination_for_file(file)}"
+      begin
+        sh "cp #{File.join(REPO, File.basename(file))} #{local_destination_for_file(file)}"
+      rescue
+        puts "Error copying #{file}"
+      end
     end
   end
 
