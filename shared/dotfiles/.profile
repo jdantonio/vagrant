@@ -240,6 +240,8 @@ elif [[ $platform == 'linux' ]]; then
     wget -qO- https://get.docker.com/ | sh
   }
 
+  [[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
+
   export PATH=$PATH:$JAVA_HOME/bin
 
   export GOROOT=/opt/go
