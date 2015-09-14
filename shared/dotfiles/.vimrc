@@ -70,17 +70,30 @@ endif
 set spell spl=en_us " Select language
 set nospell " Turn it off at start
 
+" Removes trailing spaces
+" http://www.bestofvim.com/tip/trailing-whitespace/
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>tws :call TrimWhiteSpace()<CR>
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
 " set hotkeys for plugins
 nnoremap <silent> <F4> :YRShow<CR>
 nnoremap <silent> <F5> :BufExplorer<CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
-nnoremap <silent> <F8> :UndotreeToggle<cr>
+nnoremap <silent> <F8> :UndotreeToggle<CR>
 
 " tabular
-nnoremap <leader><bar> :Tabularize /\|/<cr>
-nnoremap <leader>> :Tabularize /=>/<cr>
-nnoremap <leader>= :Tabularize /=/<cr>
-nnoremap <leader>: :Tabularize /:\zs/<cr>
+nnoremap <leader><bar> :Tabularize /\|/<CR>
+nnoremap <leader>> :Tabularize /=>/<CR>
+nnoremap <leader>= :Tabularize /=/<CR>
+nnoremap <leader>: :Tabularize /:\zs/<CR>
 
 " other command shortcuts
 noremap Y y$
