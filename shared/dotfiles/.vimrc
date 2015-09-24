@@ -8,7 +8,8 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-let mapleader=","
+" let mapleader=","
+let mapleader=" "
 
 " Vim compatiblity and filetype handling
 set nocompatible
@@ -34,7 +35,7 @@ set backspace=indent,eol,start
 " highlight search terms
 set hlsearch
 set incsearch
-map <C-\> :nohlsearch<CR>
+nnoremap <silent> <leader><leader> nohlsearch<CR>
 
 " turn off the bell
 "set visualbell
@@ -86,14 +87,25 @@ autocmd BufWritePre     * :call TrimWhiteSpace()
 " set hotkeys for plugins
 nnoremap <silent> <F4> :YRShow<CR>
 nnoremap <silent> <F5> :BufExplorer<CR>
+nnoremap <silent> <F6> :e %:p:h<CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :UndotreeToggle<CR>
+
+" ctrlp
+nnoremap <silent> <leader>cp :CtrlP<cr>
+nnoremap <silent> <leader>cpb :CtrlPBuffer<cr>
+nnoremap <silent> <leader>cpm :CtrlPMixed<cr>
 
 " tabular
 nnoremap <leader><bar> :Tabularize /\|/<CR>
 nnoremap <leader>> :Tabularize /=>/<CR>
 nnoremap <leader>= :Tabularize /=/<CR>
 nnoremap <leader>: :Tabularize /:\zs/<CR>
+
+" stuff
+nnoremap <silent> <leader>em :e %:p:h<cr>
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " other command shortcuts
 noremap Y y$
