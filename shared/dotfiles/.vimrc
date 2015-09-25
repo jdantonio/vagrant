@@ -35,7 +35,7 @@ set backspace=indent,eol,start
 " highlight search terms
 set hlsearch
 set incsearch
-nnoremap <silent> <leader><leader> nohlsearch<CR>
+nnoremap <silent> <leader><leader> :nohlsearch<CR>
 
 " turn off the bell
 "set visualbell
