@@ -113,6 +113,8 @@ alias ackr='ack --type=ruby'
 alias ackg='ack --type=go'
 alias ackj='ack --type=javascript'
 
+alias vim-update='for i in ~/.vim/bundle/*; do git -C $i pull; done'
+
 # Ruby development
 
 alias be='bundle exec'
@@ -198,6 +200,7 @@ if [[ $platform == 'mac' ]]; then
     rvm get stable
     rvm cleanup all
     gem update --system
+    vim-update
   }
 
   docker.reset() {
@@ -232,6 +235,7 @@ elif [[ $platform == 'linux' ]]; then
     rvm get stable
     rvm cleanup all
     gem update --system
+    vim-update
   }
 
   alias apt="sudo apt-get"
@@ -249,6 +253,13 @@ elif [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'windows' ]]; then
 
   alias gvim='"C:\Program Files (x86)\Vim\vim74\gvim.exe" &'
+
+  update.stuff() {
+    rvm get stable
+    rvm cleanup all
+    gem update --system
+    vim-update
+  }
 
   export GOROOT=/c/go
 fi
