@@ -264,12 +264,12 @@ elif [[ $platform == 'windows' ]]; then
   export GOROOT=/c/go
 fi
 
-go.testem() {
+go.test() {
   go test -v ./...
 }
 
-go.bundle() {
-  go get -t ./...
+go.get() {
+  go get -t -v ./...
 }
 
 export GOPATH=$HOME/go
