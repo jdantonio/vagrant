@@ -147,7 +147,6 @@ endif
 
 " settings for various file types
 au BufRead,BufNewFile {*.R} set ft=R
-au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.md set filetype=markdown
 
 " settings for Ruby files
@@ -157,6 +156,16 @@ au BufRead,BufNewFile Rakefile set ft=ruby
 au BufRead,BufNewFile Thorfile set ft=ruby
 au BufRead,BufNewFile config.ru set ft=ruby
 au BufRead,BufNewFile {.irbrc,irb_tempfile*} set ft=ruby
+
+" settings for Go files
+" https://github.com/fatih/vim-go
+au BufRead,BufNewFile *.go set filetype=go
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 " settings for text files
 autocmd BufNewFile,BufReadPre *.txt set textwidth=80

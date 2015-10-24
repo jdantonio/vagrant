@@ -264,24 +264,21 @@ elif [[ $platform == 'windows' ]]; then
   export GOROOT=/c/go
 fi
 
+go.get() {
+  go get -t -v ./...
+}
+
 go.test() {
   go test -v ./...
 }
 
-go.get() {
-  go get -t -v ./...
+go.vet() {
+  go tool vet --all -v .
 }
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
-
-go.here() {
-  here=/${PWD#*/}
-  export GOPATH=$here
-  export GOBIN=$here/bin
-  export PATH=$PATH:$GOBIN
-}
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
