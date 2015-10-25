@@ -276,6 +276,10 @@ go.vet() {
   go tool vet --all -v .
 }
 
+go.doc() {
+  godoc -http=:6060
+}
+
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
