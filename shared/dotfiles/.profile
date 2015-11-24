@@ -294,3 +294,6 @@ fi
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# Visual Studio Code
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
