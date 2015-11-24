@@ -129,7 +129,8 @@ alias rg='bundle exec rails generate'
 alias rd='bundle exec rails dbconsole'
 
 alias cuke='bundle exec cucumber'
-alias spec='RUBYOPT=-w bundle exec rspec -fd --color'
+alias spec='bundle exec rspec -fd --color'
+alias wspec='RUBYOPT=-w bundle exec rspec -fd --color'
 
 export JRUBY_OPTS="-J-Xms2g -J-Xmx4g -Xcext.enabled=true"
 alias jr='jruby --1.9 -S'
