@@ -225,7 +225,7 @@ if [[ $platform == 'mac' ]]; then
   export DYLD_LIBRARY_PATH=/usr/local/mysql-5.1.73-osx10.6-x86_64/lib
   export PATH=$PATH:/usr/local/mysql/bin
 
-  export GOROOT=/usr/local/go
+  export GOROOT=/usr/local/opt/go
 
 elif [[ $platform == 'linux' ]]; then
 
