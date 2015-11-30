@@ -220,6 +220,9 @@ if [[ $platform == 'mac' ]]; then
     $(boot2docker shellinit)
   }
 
+  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+  export PATH=$JAVA_HOME/bin:$PATH
+
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
   export DYLD_LIBRARY_PATH=/usr/local/mysql-5.1.73-osx10.6-x86_64/lib
@@ -301,3 +304,5 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Visual Studio Code
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

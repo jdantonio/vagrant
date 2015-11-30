@@ -39,3 +39,7 @@
   insteadOf = https://github.com/
 [url "ssh://git@git.2checkout.com/"]
   insteadOf = http://git.2checkout.com/
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
