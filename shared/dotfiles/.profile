@@ -191,6 +191,8 @@ if [[ $platform == 'mac' ]]; then
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
 
+  alias chromex="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+
   update.stuff() {
     brew update
     brew tap homebrew/versions
