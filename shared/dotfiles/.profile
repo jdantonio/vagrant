@@ -191,8 +191,6 @@ if [[ $platform == 'mac' ]]; then
   alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
   alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
 
-  alias chromex="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
-
   update.stuff() {
     brew update
     brew tap homebrew/versions
@@ -221,9 +219,6 @@ if [[ $platform == 'mac' ]]; then
   docker.shell() {
     $(boot2docker shellinit)
   }
-
-  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-  export PATH=$JAVA_HOME/bin:$PATH
 
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
@@ -302,9 +297,27 @@ fi
 # http://rvm.beginrescueend.com/
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # Visual Studio Code
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
+# C++ stuff for exercism.io
+cmake.gcc() {
+  cmake -G "Unix Makefiles" ..
+}
+
+cmake.xcode() {
+  cmake -G Xcode ..
+}
+
+setup.cpp() {
+  local result=${PWD##*/}
+  touch $result{.h,.cpp}
+  mkdir build
+  cd build
+  cmake.gcc
+  cd ..
+}
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
