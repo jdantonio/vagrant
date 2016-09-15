@@ -299,6 +299,13 @@ fi
 
 # prefer homebrew
 alias ctags=/usr/local/bin/ctags
+CTAGS=/usr/local/bin/ctags
+
+ctags.js() {
+  GLOBIGNORE="node_modules"
+  $CTAGS -R -f .tags */**/*.js
+  GLOBIGNORE=
+}
 
 # Visual Studio Code
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
