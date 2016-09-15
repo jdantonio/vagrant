@@ -85,6 +85,7 @@ autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre     * :call TrimWhiteSpace()
 
 " set hotkeys for plugins
+nnoremap <silent> <F3> :TagbarToggle<CR>
 nnoremap <silent> <F4> :YRShow<CR>
 nnoremap <silent> <F5> :BufExplorer<CR>
 nnoremap <silent> <F6> :e %:p:h<CR>
@@ -172,6 +173,11 @@ autocmd BufNewFile,BufReadPre *.txt set textwidth=80
 autocmd BufNewFile,BufReadPre *.txt set spell spl=en_us
 autocmd BufNewFile,BufReadPre *.txt set number
 autocmd BufNewFile,BufReadPre *.txt let g:autoclose_on=1
+
+" settings for C++ files
+autocmd BufNewFile,BufReadPre *.{h,cpp} set softtabstop=2
+autocmd BufNewFile,BufReadPre *.{h,cpp} set tabstop=2
+autocmd BufNewFile,BufReadPre *.{h,cpp} set shiftwidth=2
 
 " Windows-like clipboard behavior
 " http://superuser.com/questions/10588/how-to-make-cut-copy-paste-in-gvim-on-ubuntu-work-with-ctrlx-ctrlc-ctrlv

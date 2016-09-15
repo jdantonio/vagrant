@@ -297,6 +297,9 @@ fi
 # http://rvm.beginrescueend.com/
 # http://everydayrails.com/2010/06/28/rvm-gemsets-rails3.html
 
+# prefer homebrew
+alias ctags=/usr/local/bin/ctags
+
 # Visual Studio Code
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
