@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby -w
+
+VIM_BUNDLE = ENV['HOME'] + '/.vim/bundle'
+
+exit(1) unless Dir.exist? VIM_BUNDLE
+
+Dir.foreach(VIM_BUNDLE) do |file|
+  next if file == '.' || file == '..'
+  wd = File.join(VIM_BUNDLE, file)
+  next unless File.directory? wd
+  Dir.chdir(wd)
+  #puts wd + ' -- ' + Dir.getwd
+  `git pull origin master`
+end
+
