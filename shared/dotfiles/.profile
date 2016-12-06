@@ -59,6 +59,7 @@ export HISTCONTROL=ignoredups
 # Personnal Aliases
 #-------------------
 
+# https://discussions.apple.com/thread/3203884?tstart=0
 alias fix.safari="defaults write com.apple.Safari ApplePersistenceIgnoreState YES"
 alias fix.preview="defaults write com.apple.Preview ApplePersistenceIgnoreState YES"
 
