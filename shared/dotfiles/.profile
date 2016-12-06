@@ -59,6 +59,9 @@ export HISTCONTROL=ignoredups
 # Personnal Aliases
 #-------------------
 
+alias fix.safari="defaults write com.apple.Safari ApplePersistenceIgnoreState YES"
+alias fix.preview="defaults write com.apple.Preview ApplePersistenceIgnoreState YES"
+
 alias h='history'
 alias which='type -a'
 alias ..='cd ..'
